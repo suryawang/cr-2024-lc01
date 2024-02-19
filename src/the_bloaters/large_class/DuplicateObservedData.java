@@ -3,10 +3,61 @@ package the_bloaters.large_class;
 import java.awt.Frame;
 
 public class DuplicateObservedData {
+	class Interval {
+		private int start;
+		private int end;
+		private int length;
+
+		public Interval() {
+			start = end = length = 0;
+		}
+
+		private int parseInteger(String text) {
+			try {
+				return Integer.parseInt(text);
+			} catch (NumberFormatException ex) {
+				return 0;
+			}
+		}
+
+		public int getStart() {
+			return start;
+		}
+
+		public void setStart(String start) {
+			this.start = parseInteger(start);
+		}
+
+		public int getEnd() {
+			return end;
+		}
+
+		public void setEnd(String end) {
+			this.end = parseInteger(end);
+		}
+
+		public int getLength() {
+			return length;
+		}
+
+		public void setLength(String length) {
+			this.length = parseInteger(length);
+		}
+
+		void calculateLength() {
+			length = end - start;
+		}
+
+		void calculateEnd() {
+			end = start + length;
+		}
+	}
+
 	class IntervalWindow extends Frame {
 		java.awt.TextField startField;
 		java.awt.TextField endField;
 		java.awt.TextField lengthField;
+		private Interval interval;
 
 		public IntervalWindow() {
 			startField = new java.awt.TextField();
@@ -19,14 +70,7 @@ public class DuplicateObservedData {
 		}
 
 		class SymFocus extends java.awt.event.FocusAdapter {
-			boolean isNotInteger(String text) {
-				try {
-					Integer.parseInt(text);
-					return true;
-				} catch(NumberFormatException ex) {
-					return false;
-				}
-			}
+
 			public void focusLost(java.awt.event.FocusEvent event) {
 				Object object = event.getSource();
 				if (object == startField) {
@@ -39,46 +83,28 @@ public class DuplicateObservedData {
 			}
 
 			void StartField_FocusLost(java.awt.event.FocusEvent event) {
-				if (isNotInteger(startField.getText())) {
-					startField.setText("0");
-				}
+				interval.setStart(startField.getText());
 				calculateLength();
 			}
 
 			void EndField_FocusLost(java.awt.event.FocusEvent event) {
-				if (isNotInteger(endField.getText())) {
-					endField.setText("0");
-				}
+				interval.setEnd(endField.getText());
 				calculateLength();
 			}
 
 			void LengthField_FocusLost(java.awt.event.FocusEvent event) {
-				if (isNotInteger(lengthField.getText())) {
-					lengthField.setText("0");
-				}
+				interval.setLength(lengthField.getText());
 				calculateEnd();
 			}
 
 			void calculateLength() {
-				try {
-					int start = Integer.parseInt(startField.getText());
-					int end = Integer.parseInt(endField.getText());
-					int length = end - start;
-					lengthField.setText(String.valueOf(length));
-				} catch (NumberFormatException e) {
-					throw new RuntimeException("Unexpected Number Format Error");
-				}
+				interval.calculateLength();
+				lengthField.setText(interval.getLength() + "");
 			}
 
 			void calculateEnd() {
-				try {
-					int start = Integer.parseInt(startField.getText());
-					int length = Integer.parseInt(lengthField.getText());
-					int end = start + length;
-					endField.setText(String.valueOf(end));
-				} catch (NumberFormatException e) {
-					throw new RuntimeException("Unexpected Number Format Error");
-				}
+				interval.calculateEnd();
+				endField.setText(interval.getEnd() + "");
 			}
 		}
 	}
