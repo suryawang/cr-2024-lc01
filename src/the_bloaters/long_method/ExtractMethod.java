@@ -7,51 +7,64 @@ public class ExtractMethod {
 		ExtractMethod test = new ExtractMethod("Andi");
 		test.printOwing();
 	}
+
 	private Order orders;
 	private String name;
+
 	public String getName() {
 		return name;
 	}
+
 	public ExtractMethod(String name) {
 		this.name = name;
 		orders = new Order();
 	}
+
 	// TODO: reduce this method with extract method
 	void printOwing() {
-	  Enumeration elements = orders.elements();
-	  double outstanding = 0.0;
 
-	  // print banner
-	  System.out.println ("*****************************");
-	  System.out.println ("****** Customer totals ******");
-	  System.out.println ("*****************************");
+		printBanner();
 
-	  // print owings
-	  while (elements.hasMoreElements()) {
-	    Order each = (Order) elements.nextElement();
-	    outstanding += each.getAmount();
-	  }
-
-	  // print details
-	  System.out.println("name: " + name);
-	  System.out.println("amount: " + outstanding);
+		printDetails(countOwings());
 	}
-	
+
+	private double countOwings() {
+		Enumeration elements = orders.elements();
+		double outstanding = 0.0;
+		while (elements.hasMoreElements()) {
+			Order each = (Order) elements.nextElement();
+			outstanding += each.getAmount();
+		}
+		return outstanding;
+	}
+
+	private void printDetails(double outstanding) {
+		System.out.println("name: " + name);
+		System.out.println("amount: " + outstanding);
+	}
+
+	private void printBanner() {
+		System.out.println("*****************************");
+		System.out.println("****** Customer totals ******");
+		System.out.println("*****************************");
+	}
+
 	class Order implements Enumeration {
-		private double [] amounts;
+		private double[] amounts;
 		private int currentIndex;
+
 		public Order() {
 			amounts = new double[5];
-			currentIndex  = 0;
+			currentIndex = 0;
 			amounts[0] = 12.0;
-			amounts[1] =  2.5;
-			amounts[2] =  3.2;
-			amounts[3] =  7.05;
-			amounts[4] =  6.0;
+			amounts[1] = 2.5;
+			amounts[2] = 3.2;
+			amounts[3] = 7.05;
+			amounts[4] = 6.0;
 		}
-		
+
 		public boolean hasMoreElements() {
-			if(currentIndex < amounts.length) {
+			if (currentIndex < amounts.length) {
 				return true;
 			}
 			return false;
@@ -66,9 +79,9 @@ public class ExtractMethod {
 		}
 
 		public Object nextElement() {
-			currentIndex ++;
+			currentIndex++;
 			return this;
 		}
-		
+
 	}
 }
