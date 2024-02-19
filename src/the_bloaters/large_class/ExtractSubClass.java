@@ -47,6 +47,22 @@ public class ExtractSubClass {
 			return employee.getRate();
 		}
 	}
+	
+	class PartsAndLaborItem extends JobItem {
+		private int unitPrice;
+		private Employee employee;
+
+		public PartsAndLaborItem(int quantity, int unitPrice, Employee employee) {
+			super(quantity);
+			this.unitPrice = unitPrice;
+			this.employee = employee;
+		}
+
+		@Override
+		public int getUnitPrice() {
+			return unitPrice + employee.getRate();
+		}
+	}
 
 	class Employee {
 		private int rate;
@@ -64,7 +80,9 @@ public class ExtractSubClass {
 		Employee kent = new Employee(50);
 		JobItem j1 = new LaborItem(5, kent);
 		JobItem j2 = new PartsItem(15, 10);
+		JobItem j3 = new PartsAndLaborItem(1, 14, kent);
 		int total = j1.getTotalPrice() + j2.getTotalPrice();
+		total += j3.getTotalPrice();
 		System.out.println(total);
 	}
 
