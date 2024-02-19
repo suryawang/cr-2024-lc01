@@ -12,13 +12,13 @@ public class TempToQuery {
 
 		// TODO: change this method to using replace temp with query
 		public double getPrice() {
-			double discountFactor;
-			if (basePrice() > 1000) {
-				discountFactor = 0.95;
-			} else {
-				discountFactor = 0.98;
-			}
-			return basePrice() * discountFactor;
+			return basePrice() * getDiscountFactor();
+		}
+
+		private double getDiscountFactor() {
+			if (basePrice() > 1000)
+				return 0.95;
+			return 0.98;
 		}
 
 		private int basePrice() {
