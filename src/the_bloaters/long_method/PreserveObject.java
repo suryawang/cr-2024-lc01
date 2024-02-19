@@ -2,24 +2,23 @@ package the_bloaters.long_method;
 
 public class PreserveObject {
 	class Room {
-		private int lowest, highest;
+		private TempRange range;
 
 		public Room(int lowest, int highest) {
-			this.lowest = lowest;
-			this.highest = highest;
+			range = new TempRange(lowest, highest);
 		}
 
 		// TODO: replace low & high in this withinPlan with preserve whole object
 		public boolean withinPlan(HeatingPlan plan) {
-			return plan.withinRange(this);
+			return plan.withinRange(range);
 		}
 
 		private int getHighestTemp() {
-			return highest;
+			return range.getHigh();
 		}
 
 		private int getLowestTemp() {
-			return lowest;
+			return range.getLow();
 		}
 
 	}
@@ -31,12 +30,8 @@ public class PreserveObject {
 			range = new TempRange(from, to);
 		}
 
-		public boolean withinRange(int low, int high) {
-			return (low >= range.getLow() && high <= range.getHigh());
-		}
-
-		public boolean withinRange(Room room) {
-			return (room.getLowestTemp() >= range.getLow() && room.getHighestTemp() <= range.getHigh());
+		public boolean withinRange(TempRange range) {
+			return range.isBetween(this.range);
 		}
 	}
 
@@ -55,6 +50,10 @@ public class PreserveObject {
 
 		public int getHigh() {
 			return high;
+		}
+
+		public boolean isBetween(TempRange range) {
+			return low >= range.getLow() && high <= range.getHigh();
 		}
 	}
 
