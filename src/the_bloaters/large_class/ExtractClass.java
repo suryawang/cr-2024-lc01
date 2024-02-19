@@ -24,8 +24,16 @@ public class ExtractClass {
 	}
 
 	class TelephoneNumber {
-		public String areaCode;
-		public String number;
+		private String areaCode;
+		private String number;
+
+		public TelephoneNumber() {
+		}
+
+		public TelephoneNumber(String areaCode, String number) {
+			this.areaCode = areaCode;
+			this.number = number;
+		}
 
 		public String getTelephoneNumber() {
 			return "(" + areaCode + ") " + number;
