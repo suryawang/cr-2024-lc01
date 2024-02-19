@@ -4,31 +4,31 @@ public class ExtractClass {
 	// todo extract class TelephoneNumber from class Person
 	class Person {
 		private String name;
-		private String officeAreaCode;
-		private String officeNumber;
+		private TelephoneNumber officeNumber = new TelephoneNumber();
 
 		public String getName() {
 			return name;
 		}
 
 		public String getTelephoneNumber() {
-			return ("(" + officeAreaCode + ") " + officeNumber);
+			return officeNumber.getTelephoneNumber();
 		}
 
-		public String getOfficeAreaCode() {
-			return officeAreaCode;
-		}
-
-		public void setOfficeAreaCode(String arg) {
-			officeAreaCode = arg;
-		}
-
-		public String getOfficeNumber() {
+		public TelephoneNumber getOfficeNumber() {
 			return officeNumber;
 		}
 
-		public void setOfficeNumber(String arg) {
-			officeNumber = arg;
+		public void setOfficeNumber(TelephoneNumber number) {
+			officeNumber = number;
+		}
+	}
+
+	class TelephoneNumber {
+		public String areaCode;
+		public String number;
+
+		public String getTelephoneNumber() {
+			return "(" + areaCode + ") " + number;
 		}
 	}
 }
