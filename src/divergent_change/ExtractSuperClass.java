@@ -3,13 +3,26 @@ package divergent_change;
 import java.util.Enumeration;
 import java.util.Vector;
 
-class Employee {
+abstract class Party {
 	private String name;
+
+	public Party(String name) {
+		this.name = name;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	abstract int getAnnualCost();
+}
+
+class Employee extends Party {
 	private int annualCost;
 	private String id;
 
 	public Employee(String name, String id, int annualCost) {
-		this.name = name;
+		super(name);
 		this.id = id;
 		this.annualCost = annualCost;
 	}
@@ -21,21 +34,16 @@ class Employee {
 	public String getId() {
 		return id;
 	}
-
-	public String getName() {
-		return name;
-	}
 }
 
-class Department {
-	private String name;
+class Department extends Party {
 	private Vector<Employee> staff = new Vector<>();
 
 	public Department(String name) {
-		this.name = name;
+		super(name);
 	}
 
-	public int getTotalAnnualCost() {
+	public int getAnnualCost() {
 		int result = 0;
 		for (Employee i : staff)
 			result += i.getAnnualCost();
@@ -54,7 +62,4 @@ class Department {
 		staff.addElement(arg);
 	}
 
-	public String getName() {
-		return name;
-	}
 }
