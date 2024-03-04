@@ -1,6 +1,31 @@
 package oo_abuser.switch_statement;
 
 public class Calculator {
+	abstract class Insurance {
+		abstract double calculate(double insuranceValue);
+	}
+
+	class LowRiskInsurance extends Insurance {
+		@Override
+		double calculate(double insuranceValue) {
+			return insuranceValue * 0.02;
+		}
+	}
+
+	class ModerateRiskInsurance extends Insurance {
+		@Override
+		double calculate(double insuranceValue) {
+			return insuranceValue * 0.04;
+		}
+	}
+
+	class HighRiskInsurance extends Insurance {
+		@Override
+		double calculate(double insuranceValue) {
+			return insuranceValue * 0.06;
+		}
+	}
+
 	class InsuranceQuote {
 		private Motorist motorist;
 
@@ -8,25 +33,17 @@ public class Calculator {
 			this.motorist = motorist;
 		}
 
-		public RiskFactor calculateMotoristRisk() {
+		public Insurance calculateMotoristRisk() {
 			if (motorist.getPointsOnLicense() > 3 || motorist.getAge() < 25)
-				return RiskFactor.HIGH_RISK;
+				return new HighRiskInsurance();
 			if (motorist.getPointsOnLicense() > 0)
-				return RiskFactor.MODERATE_RISK;
+				return new ModerateRiskInsurance();
 
-			return RiskFactor.LOW_RISK;
+			return new LowRiskInsurance();
 		}
 
 		public double calculateInsurancePremium(double insuranceValue) {
-			RiskFactor riskFactor = calculateMotoristRisk();
-			switch (riskFactor) {
-			case LOW_RISK:
-				return insuranceValue * 0.02;
-			case MODERATE_RISK:
-				return insuranceValue * 0.04;
-			default:
-				return insuranceValue * 0.06;
-			}
+			return calculateMotoristRisk().calculate(insuranceValue);
 		}
 	}
 
