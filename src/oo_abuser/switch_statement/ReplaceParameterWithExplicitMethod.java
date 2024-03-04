@@ -25,6 +25,7 @@ public class ReplaceParameterWithExplicitMethod {
 		public void applyFixedDiscount(double discount) {
 			price -= discount;
 		}
+
 		public void applyPercentDiscount(double discount) {
 			price *= discount;
 		}
