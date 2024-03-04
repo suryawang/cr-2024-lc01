@@ -23,13 +23,21 @@ public class ReplaceInheritenceWithDelegation {
 		}
 	}
 
-	class Car extends Engine {
+	class Car {
 		// ...
 		private String brand;
 		private String model;
+		private Engine engine= new Engine();
+		
+		public void setFuel(double fuel) {
+			engine.setFuel(fuel);
+		}
+		public double getFuel() {
+			return engine.getFuel();
+		}
 
 		public String getName() {
-			return brand + " " + model + " (" + getCV() + "CV)";
+			return brand + " " + model + " (" + engine.getCV() + "CV)";
 		}
 
 		public String getModel() {
