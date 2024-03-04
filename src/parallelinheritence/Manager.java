@@ -26,5 +26,18 @@ public class Manager {
 		System.out.println(comp2);
 		System.out.println("********************");
 		System.out.println(civil2);
+		
+		// Solution 3
+        EngineerMileStone comp3 = new RefactorComputerEngineer();
+        comp3.setType("Computer Engineer");
+        comp3.setSalary(50000);
+
+        EngineerMileStone civil3 = new ReFactorCivilEngineer();
+        civil3.setType("Civil Engineer");
+        civil3.setSalary(60000);
+
+        System.out.println(comp3);
+        System.out.println("********************");
+        System.out.println(civil3);
 	}
 }
