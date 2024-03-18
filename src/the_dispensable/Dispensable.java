@@ -13,8 +13,8 @@ public class Dispensable {
 			items.add(new SaleItem(n, rnd.nextInt(50), m.getPrice(n)));
 		}
 		for (SaleItem s : items) {
-			System.out.println(s.markdownView());
-			System.out.println(s.htmlView());
+			System.out.println(new SaleItemMarkdownView(s));
+			System.out.println(new SaleItemHtmlView(s));
 		}
 	}
 }
@@ -78,21 +78,68 @@ class SaleItem {
 
 		return basePrice - discount + shippingCost;
 	}
+}
 
-	// refactor the following two method using form template method
-	public String markdownView() {
-		String out = "#" + this.getName() + "\r\n";
-		out += "> Quantity = " + this.getQuantity() + "\r\n";
-		out += "> Price = " + this.getItemPrice() + "\r\n";
-		out += "= " + this.price() + "\r\n";
-		return out;
+abstract class SaleItemView {
+	protected SaleItem item;
+
+	public SaleItemView(SaleItem item) {
+		this.item = item;
 	}
 
-	public String htmlView() {
-		String out = "<dl><dt>" + this.getName() + "</dt>";
-		out += "<dd> Quantity = " + this.getQuantity() + "</dd>";
-		out += "<dd> Price = " + this.getItemPrice() + "</dd>";
-		out += "<dd> Total =" + this.price() + "</dd></dl>";
-		return out;
+	abstract String name();
+
+	abstract String quantity();
+
+	abstract String itemPrice();
+
+	abstract String price();
+
+	public String toString() {
+		return name() + quantity() + itemPrice() + price();
+	}
+}
+
+class SaleItemMarkdownView extends SaleItemView {
+	public SaleItemMarkdownView(SaleItem item) {
+		super(item);
+	}
+
+	String name() {
+		return "#" + item.getName() + "\r\n";
+	}
+
+	String quantity() {
+		return "> Quantity = " + item.getQuantity() + "\r\n";
+	}
+
+	String itemPrice() {
+		return "> Price = " + item.getItemPrice() + "\r\n";
+	}
+
+	String price() {
+		return "= " + item.price() + "\r\n";
+	}
+}
+
+class SaleItemHtmlView extends SaleItemView {
+	public SaleItemHtmlView(SaleItem item) {
+		super(item);
+	}
+
+	String name() {
+		return "<dl><dt>" + item.getName() + "</dt>";
+	}
+
+	String quantity() {
+		return "<dd> Quantity = " + item.getQuantity() + "</dd>";
+	}
+
+	String itemPrice() {
+		return "<dd> Price = " + item.getItemPrice() + "</dd>";
+	}
+
+	String price() {
+		return "<dd> Total =" + item.price() + "</dd></dl>";
 	}
 }
