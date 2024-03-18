@@ -12,13 +12,20 @@ public class IntroduceAssertion {
 	}
 
 	double getExpenseLimit() {
-		// should have either expense limit or a primary project
+		Assert.isTrue(expenseLimit != NULL_EXPENSE || primaryProject != null);
 		return (expenseLimit != NULL_EXPENSE) ? expenseLimit : primaryProject.getMemberExpenseLimit();
 	}
 
 	public static void main(String[] args) {
 		var a = new IntroduceAssertion();
-		a.expenseLimit = 1;
+		//a.expenseLimit = 1;
 		System.out.println(a.getExpenseLimit());
+	}
+
+	public static class Assert {
+		public static void isTrue(boolean value) {
+			if (value != true)
+				throw new AssertionError("Value is false.");
+		}
 	}
 }
