@@ -10,18 +10,16 @@ public class ConsolidateConditionalExpression {
 		private int lengthofservice;
 
 		public double disabilityAmount() {
-			if (seniority < 2) {
-				return 0;
-			}
-			if (monthsDisabled > 12) {
-				return 0;
-			}
-			if (isPartTime) {
+			if (isNotEligibleForDisability()) {
 				return 0;
 			}
 			// compute the disability amount
 			// ...
 			return 1;
+		}
+
+		private boolean isNotEligibleForDisability() {
+			return seniority < 2 || monthsDisabled > 12 || isPartTime;
 		}
 
 		private boolean onVacation() {
