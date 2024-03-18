@@ -9,13 +9,11 @@ public class ConsolidateDuplicateConditionalFragment {
 		double total;
 		if (isSpecialDeal()) {
 			total = price * 0.95;
-			validateEmailAddress();
-			sendEmail();
 		} else {
-			validateEmailAddress();
 			total = price * 0.98;
-			sendEmail();
 		}
+		validateEmailAddress();
+		sendEmail();
 		return total;
 	}
 }
