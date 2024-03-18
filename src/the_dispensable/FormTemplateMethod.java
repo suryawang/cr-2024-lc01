@@ -100,6 +100,27 @@ public class FormTemplateMethod {
 			return "_Written by " + article.getAuthor() + " on " + article.getDate() + "_";
 		}
 	}
+	class ArticleCsvView extends ArticleView {
+		public ArticleCsvView(Article article) {
+			super(article);
+		}
+
+		String title() {
+			return article.getTitle() + ",";
+		}
+
+		String intro() {
+			return article.getIntro() + ",";
+		}
+
+		String body() {
+			return article.getBody() + ",";
+		}
+
+		String footer() {
+			return article.getAuthor() + "," + article.getDate() + "\n";
+		}
+	}
 
 	void test() {
 		var ar = new Article("Jonatan Christie's Super Series is complete",
@@ -108,6 +129,7 @@ public class FormTemplateMethod {
 				"Mohammad Resha Pratama", "Monday, 18 Mar 2024 14:30 IWST");
 		System.out.println(new ArticleMarkdownView(ar).view());
 		System.out.println(new ArticleHtmlView(ar).view());
+		System.out.println(new ArticleCsvView(ar).view());
 	}
 
 	public static void main(String a[]) {
