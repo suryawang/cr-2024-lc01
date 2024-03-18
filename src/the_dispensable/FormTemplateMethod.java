@@ -35,21 +35,69 @@ public class FormTemplateMethod {
 		public String getDate() {
 			return date;
 		}
+	}
 
-		public String markdownView() {
-			String output = "# " + getTitle() + "\n\n";
-			output += "> " + getIntro() + "\n\n";
-			output += getBody() + "\n\n";
-			output += "_Written by " + getAuthor() + " on " + getDate() + "_";
-			return output;
+	abstract class ArticleView {
+		protected Article article;
+
+		public ArticleView(Article article) {
+			this.article = article;
 		}
 
-		public String htmlView() {
-			String output = "<h2>" + getTitle() + "</h2>" + "\n";
-			output += "<blockquote>" + getIntro() + "</blockquote>" + "\n";
-			output += "<p>" + getBody() + "</p>" + "\n";
-			output += "<em>Written by " + getAuthor() + " on " + getDate() + "</em>";
-			return output;
+		abstract String title();
+
+		abstract String intro();
+
+		abstract String body();
+
+		abstract String footer();
+
+		public String view() {
+			return title() + intro() + body() + footer();
+		}
+	}
+
+	class ArticleHtmlView extends ArticleView {
+		public ArticleHtmlView(Article article) {
+			super(article);
+		}
+
+		String title() {
+			return "<h2>" + article.getTitle() + "</h2>" + "\n";
+		}
+
+		String intro() {
+			return "<blockquote>" + article.getIntro() + "</blockquote>" + "\n";
+		}
+
+		String body() {
+			return "<p>" + article.getBody() + "</p>" + "\n";
+		}
+
+		String footer() {
+			return "<em>Written by " + article.getAuthor() + " on " + article.getDate() + "</em>";
+		}
+	}
+
+	class ArticleMarkdownView extends ArticleView {
+		public ArticleMarkdownView(Article article) {
+			super(article);
+		}
+
+		String title() {
+			return "# " + article.getTitle() + "\n\n";
+		}
+
+		String intro() {
+			return "> " + article.getIntro() + "\n\n";
+		}
+
+		String body() {
+			return article.getBody() + "\n\n";
+		}
+
+		String footer() {
+			return "_Written by " + article.getAuthor() + " on " + article.getDate() + "_";
 		}
 	}
 
@@ -57,10 +105,9 @@ public class FormTemplateMethod {
 		var ar = new Article("Jonatan Christie's Super Series is complete",
 				"Jonathan Christie's super series title is complete (VCG via Getty Images/Tai Chengzhe)",
 				"Birmingham -Jonathan Christie is the 2024 All England champion . He is on the elite list of badminton players who have won super series titles at various levels.",
-				"Mohammad Resha Pratama", "Monday, 18 Mar 2024 14:30 IWST"
-		);
-		System.out.println(ar.markdownView());
-		System.out.println(ar.htmlView());
+				"Mohammad Resha Pratama", "Monday, 18 Mar 2024 14:30 IWST");
+		System.out.println(new ArticleMarkdownView(ar).view());
+		System.out.println(new ArticleHtmlView(ar).view());
 	}
 
 	public static void main(String a[]) {
