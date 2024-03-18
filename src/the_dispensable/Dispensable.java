@@ -19,31 +19,23 @@ public class Dispensable {
 	}
 }
 
-// refactor the following class methods with substitute algorithm
 class Master {
+	final String[] names = { "Pencil HB", "Ballpoint Pen Red", "Ballpoint Pen Blue", "Ballpoint Pen Green" };
+	final int[] values = { 120, 150, 145, 155 };
+
 	public int getPrice(String name) {
 		if (contain(name)) {
-			if (name.equals("Pencil HB"))
-				return 120;
-			if (name.equals("Ballpoint Pen Red"))
-				return 150;
-			if (name.equals("Ballpoint Pen Blue"))
-				return 145;
-			if (name.equals("Ballpoint Pen Green"))
-				return 155;
+			for (int i = 0; i < names.length; i++)
+				if (names[i].equals(name))
+					return values[i];
 		}
 		return -1;
 	}
 
 	public boolean contain(String name) {
-		if (name.equals("Pencil HB"))
-			return true;
-		if (name.equals("Ballpoint Pen Red"))
-			return true;
-		if (name.equals("Ballpoint Pen Blue"))
-			return true;
-		if (name.equals("Ballpoint Pen Green"))
-			return true;
+		for (String n : names)
+			if (n.equals(name))
+				return true;
 		return false;
 	}
 }
