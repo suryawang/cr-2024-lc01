@@ -2,10 +2,12 @@ package the_couplers;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Dictionary;
+import java.util.Hashtable;
 import java.util.Iterator;
 
 public class ChangeValueToReference {
-	class Customer {
+	static class Customer {
 		private final String name;
 
 		public Customer(String name) {
@@ -14,6 +16,15 @@ public class ChangeValueToReference {
 
 		public String getName() {
 			return name;
+		}
+	}
+
+	final class CustomerRepository {
+		private static Dictionary<String, Customer> instances = new Hashtable<String, Customer>();
+		public static Customer getCustomer(String name) {
+			if(instances.get(name)==null)
+				instances.put(name, new Customer(name));
+			return instances.get(name);
 		}
 	}
 
@@ -26,11 +37,11 @@ public class ChangeValueToReference {
 		}
 
 		public void setCustomer(String customerName) {
-			customer = new Customer(customerName);
+			customer = CustomerRepository.getCustomer(customerName);
 		}
 
 		public Order(String customerName) {
-			customer = new Customer(customerName);
+			setCustomer(customerName);
 		}
 
 		public Customer getCustomer() {
