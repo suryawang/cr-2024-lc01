@@ -26,17 +26,12 @@ public class splash {
 		fframe() {
 			super("Electricity Billing System");
 			setLayout(new FlowLayout());
-			ImageIcon i2 = getIcon("splash.jpg", 720, 550);
+			ImageIcon i2 = Icon.get("splash.jpg", 720, 550);
 
 			JLabel l1 = new JLabel(i2);
 			add(l1);
 			t1 = new Thread(this);
 			t1.start();
-		}
-
-		private ImageIcon getIcon(String file, int width, int height) {
-			return new ImageIcon(new ImageIcon(ClassLoader.getSystemResource("images/" + file)).getImage()
-					.getScaledInstance(width, height, Image.SCALE_DEFAULT));
 		}
 
 		public void run() {

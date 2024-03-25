@@ -23,22 +23,12 @@ public class login extends JFrame implements ActionListener
         tf1=new JTextField(15);
         pf2=new JPasswordField(15);
 
-        ImageIcon ic1=new ImageIcon(ClassLoader.getSystemResource("images/login.jpg"));
-        Image i1=ic1.getImage().getScaledInstance(50,50,Image.SCALE_DEFAULT);
-        b1=new JButton("Login",new ImageIcon(i1));
-
-        ImageIcon ic2=new ImageIcon(ClassLoader.getSystemResource("images/cancel.png"));
-        Image i2=ic2.getImage().getScaledInstance(50,50,Image.SCALE_DEFAULT);
-        b2=new JButton("Cancel",new ImageIcon(i2));
+        b1=new JButton("Login",Icon.get("login.jpg", 50, 50));
+        b2=new JButton("Cancel",Icon.get("cancel.png", 50, 50));
 
         b1.addActionListener(this);
         b2.addActionListener(this);
-
-        ImageIcon ic3=new ImageIcon(ClassLoader.getSystemResource("images/pop.jpg"));
-        Image i3=ic3.getImage().getScaledInstance(340,370,Image.SCALE_DEFAULT);
-        ImageIcon icc3=new ImageIcon(i3);
-
-        l3=new JLabel(icc3);
+        l3=new JLabel(Icon.get("pop.jpg", 340, 370));
 
         setLayout(new BorderLayout());
 
