@@ -3,9 +3,9 @@ package the_couplers;
 public class HideDelegate {
 	class Person {
 		private Department department;
-
-		public Department getDepartment() {
-			return department;
+		
+		public Person getManager() {
+			return department.getManager();
 		}
 
 		public void setDepartment(Department arg) {
@@ -34,7 +34,7 @@ public class HideDelegate {
 		Person sally = new Person();
 		Department km = new Department(sally);
 		john.setDepartment(km);
-		Person manager = john.getDepartment().getManager();
+		Person manager = john.getManager();
 		System.out.println(manager);
 	}
 
