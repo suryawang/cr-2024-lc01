@@ -9,11 +9,15 @@ public class Project extends JFrame implements ActionListener{
 
         setSize(1500,800);
 
-        /* Adding background image */
-        JLabel l1 = new JLabel(Icon.get("main.jpg", 1420, 720));
-        add(l1);
+        add(new JLabel(Icon.get("main.jpg", 1420, 720)));
 
-        /* First Column */
+        setupMenu();
+
+        setFont(new Font("Senserif",Font.BOLD,16));
+        setLayout(new FlowLayout());
+        setVisible(false);
+    }
+	private void setupMenu() {
         JMenuBar mb  = new JMenuBar();
         JMenu master = new JMenu("Master");
         JMenuItem m1 = new JMenuItem("New Customer");
@@ -21,37 +25,22 @@ public class Project extends JFrame implements ActionListener{
         JMenuItem m3 = new JMenuItem("Deposit Details");
         master.setForeground(Color.BLUE);
 
-
-        // --------------------------------------------------------------------------------------------
-
-
-        /* Second Column */
         JMenu user = new JMenu("User");
         JMenuItem u1 = new JMenuItem("Pay Bill");
         JMenuItem u2 = new JMenuItem("Calculate Bill");
         JMenuItem u3 = new JMenuItem("Last Bill");
         user.setForeground(Color.RED);
 
-        // --------------------------------------------------------------------------------------------- 
-
-        /* Third Column*/
         JMenu report = new JMenu("Report");
         JMenuItem r1 = new JMenuItem("Generate Bill");
         report.setForeground(Color.BLUE);
 
-        // -----------------------------------------------------------------------------------------------
-
-        /* Fourth Column*/
         JMenu utility = new JMenu("Utility");
         JMenuItem ut1 = new JMenuItem("Notepad");
         JMenuItem ut2 = new JMenuItem("Calculator");
         JMenuItem ut3 = new JMenuItem("Web Browser");
         utility.setForeground(Color.RED);
 
-
-        // ---------------------------------------------------------------------------------------
-
-        /*Fifth Column */
         JMenu exit = new JMenu("Exit");
         JMenuItem ex = new JMenuItem("Exit");
         exit.setForeground(Color.BLUE);
@@ -67,7 +56,6 @@ public class Project extends JFrame implements ActionListener{
         setMenuItem(ut2, "icon9.png", 'X', KeyEvent.VK_X);
         setMenuItem(ut3, "icon10.png", 'W', KeyEvent.VK_W);
         setMenuItem(ex, "icon11.png", 'Z', KeyEvent.VK_Z);
-        // ---------------------------------------------------------------------------------------------
 
 
         master.add(m1);
@@ -93,11 +81,7 @@ public class Project extends JFrame implements ActionListener{
         mb.add(exit);
 
         setJMenuBar(mb);
-
-        setFont(new Font("Senserif",Font.BOLD,16));
-        setLayout(new FlowLayout());
-        setVisible(false);
-    }
+	}
 	private void setMenuItem(JMenuItem menu, String file, char mnemonic, int key) {
 		menu.setFont(new Font("monospaced",Font.PLAIN,12));
         menu.setIcon(Icon.get(file, 20, 20));
