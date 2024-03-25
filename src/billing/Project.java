@@ -22,31 +22,6 @@ public class Project extends JFrame implements ActionListener{
         master.setForeground(Color.BLUE);
 
 
-        /* ---- Customer Details ---- */
-        m1.setFont(new Font("monospaced",Font.PLAIN,12));
-        m1.setIcon(Icon.get("icon1.jpg", 20, 20));
-        m1.setMnemonic('D');
-        m1.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_D, ActionEvent.CTRL_MASK));
-        m1.setBackground(Color.WHITE);
-
-        /* ---- Meter Details ---- */
-        m2.setFont(new Font("monospaced",Font.PLAIN,12));
-        m2.setIcon(Icon.get("icon2.png", 20, 20));
-        m2.setMnemonic('M');
-        m2.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_M, ActionEvent.CTRL_MASK));
-        m2.setBackground(Color.WHITE);
-
-        /* ---- Deposit Details  ----- */
-        m3.setFont(new Font("monospaced",Font.PLAIN,12));
-        m3.setIcon(Icon.get("icon3.png", 20, 20));
-        m3.setMnemonic('N');
-        m3.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_N, ActionEvent.CTRL_MASK));
-        m3.setBackground(Color.WHITE);
-
-        m1.addActionListener(this);
-        m2.addActionListener(this);
-        m3.addActionListener(this);
-
         // --------------------------------------------------------------------------------------------
 
 
@@ -57,47 +32,12 @@ public class Project extends JFrame implements ActionListener{
         JMenuItem u3 = new JMenuItem("Last Bill");
         user.setForeground(Color.RED);
 
-        /* ---- Pay Bill ---- */
-        u1.setFont(new Font("monospaced",Font.PLAIN,12));
-        u1.setIcon(Icon.get("icon4.png", 20, 20));
-        u1.setMnemonic('P');
-        u1.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_P, ActionEvent.CTRL_MASK));
-        u1.setBackground(Color.WHITE);
-
-        /* ---- Bill Details ---- */
-        u2.setFont(new Font("monospaced",Font.PLAIN,12));
-        u2.setIcon(Icon.get("icon5.png", 20, 20));
-        u2.setMnemonic('B');
-        u2.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_B, ActionEvent.CTRL_MASK));
-        u2.setBackground(Color.WHITE);
-
-        /* ---- Last Bill ----*/
-        u3.setFont(new Font("monospaced",Font.PLAIN,12));
-        u3.setIcon(Icon.get("icon6.png", 20, 20));
-        u3.setMnemonic('L');
-        u3.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_L, ActionEvent.CTRL_MASK));
-        u3.setBackground(Color.WHITE);
-
-        u1.addActionListener(this);
-        u2.addActionListener(this);
-        u3.addActionListener(this);
-
-
         // --------------------------------------------------------------------------------------------- 
 
         /* Third Column*/
         JMenu report = new JMenu("Report");
         JMenuItem r1 = new JMenuItem("Generate Bill");
         report.setForeground(Color.BLUE);
-
-        /* ---- Report ---- */
-        r1.setFont(new Font("monospaced",Font.PLAIN,12));
-        r1.setIcon(Icon.get("icon7.png", 20, 20));
-        r1.setMnemonic('R');
-        r1.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_R, ActionEvent.CTRL_MASK));
-        r1.setBackground(Color.WHITE);
-
-        r1.addActionListener(this);
 
         // -----------------------------------------------------------------------------------------------
 
@@ -108,31 +48,6 @@ public class Project extends JFrame implements ActionListener{
         JMenuItem ut3 = new JMenuItem("Web Browser");
         utility.setForeground(Color.RED);
 
-        /* ---- Calender ---- */
-        ut1.setFont(new Font("monospaced",Font.PLAIN,12));
-        ut1.setIcon(Icon.get("icon12.png", 20, 20));
-        ut1.setMnemonic('C');
-        ut1.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_C, ActionEvent.CTRL_MASK));
-        ut1.setBackground(Color.WHITE);
-
-        /* ---- Calculator ---- */
-        ut2.setFont(new Font("monospaced",Font.PLAIN,12));
-        ut2.setIcon(Icon.get("icon9.png", 20, 20));
-        ut2.setMnemonic('X');
-        ut2.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_X, ActionEvent.CTRL_MASK));
-        ut2.setBackground(Color.WHITE);
-
-        /* ---- Web Browser ---- */
-        ut3.setFont(new Font("monospaced",Font.PLAIN,12));
-        ut3.setIcon(Icon.get("icon10.png", 20, 20));
-        ut3.setMnemonic('W');
-        ut3.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_W, ActionEvent.CTRL_MASK));
-        ut3.setBackground(Color.WHITE);
-
-
-        ut1.addActionListener(this);
-        ut2.addActionListener(this);
-        ut3.addActionListener(this);
 
         // ---------------------------------------------------------------------------------------
 
@@ -141,16 +56,17 @@ public class Project extends JFrame implements ActionListener{
         JMenuItem ex = new JMenuItem("Exit");
         exit.setForeground(Color.BLUE);
 
-        /* ---- Exit ---- */
-        ex.setFont(new Font("monospaced",Font.PLAIN,12));
-        ex.setIcon(Icon.get("icon11.png", 20, 20));
-        ex.setMnemonic('Z');
-        ex.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_Z, ActionEvent.CTRL_MASK));
-        ex.setBackground(Color.WHITE);
-
-        ex.addActionListener(this);
-
-
+        setMenuItem(m1, "icon1.jpg", 'D', KeyEvent.VK_D);
+        setMenuItem(m2, "icon2.png", 'M', KeyEvent.VK_M);
+        setMenuItem(m3, "icon3.png", 'N', KeyEvent.VK_N);
+        setMenuItem(u1, "icon4.png", 'P', KeyEvent.VK_P);
+        setMenuItem(u2, "icon5.png", 'B', KeyEvent.VK_B);
+        setMenuItem(u3, "icon6.png", 'L', KeyEvent.VK_L);
+        setMenuItem(r1, "icon7.png", 'R', KeyEvent.VK_R);
+        setMenuItem(ut1, "icon12.png", 'C', KeyEvent.VK_C);
+        setMenuItem(ut2, "icon9.png", 'X', KeyEvent.VK_X);
+        setMenuItem(ut3, "icon10.png", 'W', KeyEvent.VK_W);
+        setMenuItem(ex, "icon11.png", 'Z', KeyEvent.VK_Z);
         // ---------------------------------------------------------------------------------------------
 
 
@@ -182,6 +98,14 @@ public class Project extends JFrame implements ActionListener{
         setLayout(new FlowLayout());
         setVisible(false);
     }
+	private void setMenuItem(JMenuItem menu, String file, char mnemonic, int key) {
+		menu.setFont(new Font("monospaced",Font.PLAIN,12));
+        menu.setIcon(Icon.get(file, 20, 20));
+        menu.setMnemonic(mnemonic);
+        menu.setAccelerator(KeyStroke.getKeyStroke(key, ActionEvent.CTRL_MASK));
+        menu.setBackground(Color.WHITE);
+        menu.addActionListener(this);
+	}
     public void actionPerformed(ActionEvent ae){
         String msg = ae.getActionCommand();
         if(msg.equals("Customer Details")){
