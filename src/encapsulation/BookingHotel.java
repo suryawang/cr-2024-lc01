@@ -6,12 +6,13 @@ import java.util.Date;
 
 public class BookingHotel {
 	private Hotel BookedHotel;
-	public Customer ReservedBy;
+	private Customer ReservedBy;
 	private Date BookedDate;
 	private int RatePerNight;
-	public String BookingId;
+	private String BookingId;
 
 	public BookingHotel() {
+		BookingId = "HTLBKG2016052100001";
 	}
 
 	public String getBookingId() {
