@@ -8,8 +8,15 @@ public class Hotel extends HotelStar {
 	private String Address;
 	private List<String> RoomType;
 
+	private static int num = 0;
+
 	public Hotel() {
-		HotelId = "HOTEL000001";
+		HotelId = "HOTEL" + String.format("%06d", ++num);
+	}
+	public Hotel(String hotelName, int star) {
+		setHotelName(hotelName);
+		setStar(star);
+		HotelId = "HOTEL" + String.format("%06d", ++num);
 	}
 	public String getId() {
 		return HotelId;

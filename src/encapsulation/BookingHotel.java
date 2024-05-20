@@ -11,8 +11,13 @@ public class BookingHotel {
 	private int RatePerNight;
 	private String BookingId;
 
-	public BookingHotel() {
-		BookingId = "HTLBKG2016052100001";
+	private static int num = 0;
+
+	public BookingHotel(String bookedDate, Customer customer) {
+		setBookedDate(bookedDate);
+		setReservedBy(customer);
+		var f = new SimpleDateFormat("yyyyMMdd").format(BookedDate).toString();
+		BookingId = "HTLBKG" + f + String.format("%05d", ++num);
 	}
 
 	public String getBookingId() {

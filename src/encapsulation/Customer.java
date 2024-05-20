@@ -6,8 +6,15 @@ public class Customer {
 	private String ContactNo;
 	private String Address;
 
+	private static int num = 0;
+
 	public Customer() {
-		this.CustomerId = "CST000001";
+		this.CustomerId = "CST" + String.format("%06d", ++num);
+	}
+
+	public Customer(String name) {
+		setCustomerName(name);
+		this.CustomerId = "CST" + String.format("%06d", ++num);
 	}
 
 	public String getCustomerId() {
@@ -38,4 +45,7 @@ public class Customer {
 		Address = address;
 	}
 
+	public String toString() {
+		return CustomerId + " - " + CustomerName + "[" + ContactNo + "]: " + Address;
+	}
 }
