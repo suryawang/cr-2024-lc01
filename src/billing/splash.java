@@ -9,7 +9,7 @@ public class splash {
 		f1.setVisible(true);
 		int i;
 		int x = 1;
-		for (i = 2; i <= 600; i += 4, x++) {
+		for (i = 2; i <= 600; i += 40, x++) {
 			f1.setLocation(800 - ((i + x) / 2), 500 - (i / 2));
 			f1.setSize((i + x), i);
 			try {
@@ -36,7 +36,7 @@ public class splash {
 
 		public void run() {
 			try {
-				Thread.sleep(7000);
+				Thread.sleep(2000);
 				this.setVisible(false);
 				new login().setVisible(true);
 			} catch (Exception e) {
